@@ -24,7 +24,7 @@ vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 
 require("lazy").setup("plugins")
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("github_dark_colorblind")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 vim.keymap.set("t", "<C-q>", [[<C-\><C-n><cmd>bd!<CR>]])
 vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", { desc = "Vertical split" })
