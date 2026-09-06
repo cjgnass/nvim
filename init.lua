@@ -22,6 +22,9 @@ vim.o.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.scrolloff = 999
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 require("lazy").setup("plugins")
 vim.cmd.colorscheme("github_dark_colorblind")
@@ -43,7 +46,9 @@ end, { desc = "Close all other buffers" })
 for i = 1, 9 do
 	vim.keymap.set("n", "<leader>" .. i, "<Cmd>BufferLineGoToBuffer " .. i .. "<CR>", { desc = "Go to buffer " .. i })
 end
-vim.keymap.set("n", "<leaded>td", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+vim.keymap.set("n", "<leader>td", function()
+	vim.diagnostic.open_float({ scope = "line" })
+end, { desc = "Show diagnostic" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go to Definition" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP References" })
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP Implementation" })
