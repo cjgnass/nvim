@@ -57,18 +57,10 @@ vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP Hover" })
 vim.keymap.set("n", "gp", function()
 	vim.diagnostic.jump({ count = 1 })
 end, { desc = "Go to diagnostic" })
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
-if vim.uv.os_uname().sysname == "Windows_NT" then
-	vim.keymap.set("n", "<M-h>", "<cmd>vertical resize +5<CR>")
-	vim.keymap.set("n", "<M-l>", "<cmd>vertical resize -5<CR>")
-	vim.keymap.set("n", "<M-j>", "<cmd>resize +5<CR>")
-	vim.keymap.set("n", "<M-k>", "<cmd>resize -5<CR>")
-else
-	vim.keymap.set("n", "<C-S-h>", "<cmd>vertical resize +5<CR>")
-	vim.keymap.set("n", "<C-S-l>", "<cmd>vertical resize -5<CR>")
-	vim.keymap.set("n", "<C-S-j>", "<cmd>resize +5<CR>")
-	vim.keymap.set("n", "<C-S-k>", "<cmd>resize -5<CR>")
-end
+vim.keymap.set("n", "<M-h>", "<cmd>vertical resize +5<CR>")
+vim.keymap.set("n", "<M-l>", "<cmd>vertical resize -5<CR>")
+vim.keymap.set("n", "<M-j>", "<cmd>resize +5<CR>")
+vim.keymap.set("n", "<M-k>", "<cmd>resize -5<CR>")
 
 -- nvim-telescope/telescope.nvim
 vim.keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
