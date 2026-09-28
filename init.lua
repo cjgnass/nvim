@@ -27,7 +27,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 require("lazy").setup("plugins")
-vim.cmd.colorscheme("github_dark_colorblind")
+-- vim.cmd.colorscheme("tokyonight")
+vim.cmd("colorscheme github_dark_dimmed")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 vim.keymap.set("t", "<C-q>", [[<C-\><C-n><cmd>bd!<CR>]])
 vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", { desc = "Vertical split" })
@@ -57,20 +58,31 @@ vim.keymap.set("n", "gp", function()
 	vim.diagnostic.jump({ count = 1 })
 end, { desc = "Go to diagnostic" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
-vim.keymap.set("n", "<C-S-h>", "<cmd>vertical resize +5<CR>")
-vim.keymap.set("n", "<C-S-l>", "<cmd>vertical resize -5<CR>")
-vim.keymap.set("n", "<C-S-j>", "<cmd>resize +5<CR>")
-vim.keymap.set("n", "<C-S-k>", "<cmd>resize -5<CR>")
+if vim.uv.os_uname().sysname == "Windows_NT" then
+	vim.keymap.set("n", "<M-h>", "<cmd>vertical resize +5<CR>")
+	vim.keymap.set("n", "<M-l>", "<cmd>vertical resize -5<CR>")
+	vim.keymap.set("n", "<M-j>", "<cmd>resize +5<CR>")
+	vim.keymap.set("n", "<M-k>", "<cmd>resize -5<CR>")
+else
+	vim.keymap.set("n", "<C-S-h>", "<cmd>vertical resize +5<CR>")
+	vim.keymap.set("n", "<C-S-l>", "<cmd>vertical resize -5<CR>")
+	vim.keymap.set("n", "<C-S-j>", "<cmd>resize +5<CR>")
+	vim.keymap.set("n", "<C-S-k>", "<cmd>resize -5<CR>")
+end
+
 -- nvim-telescope/telescope.nvim
 vim.keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>sm", "<cmd>Telescope marks<CR>", { desc = "Telescope marks" })
 
 -- stevearc/oil.nvim
-vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Oil" })
+vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", { desc = "Oil" })
 
 -- mbbill/undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undo tree" })
 
 -- nvim-treesitter
 vim.keymap.set("n", "<leader>ti", vim.cmd.InspectTree, { desc = "Inspect tree" })
+
+-- nvim-neo-tree/neo-tree
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Inspect tree" })
