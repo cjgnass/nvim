@@ -27,8 +27,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 require("lazy").setup("plugins")
--- vim.cmd.colorscheme("tokyonight")
-vim.cmd("colorscheme github_dark_dimmed")
+vim.cmd.colorscheme("tokyonight")
+-- vim.cmd("colorscheme github_dark_default")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 vim.keymap.set("t", "<C-q>", [[<C-\><C-n><cmd>bd!<CR>]])
 vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", { desc = "Vertical split" })
@@ -47,9 +47,12 @@ end, { desc = "Close all other buffers" })
 for i = 1, 9 do
 	vim.keymap.set("n", "<leader>" .. i, "<Cmd>BufferLineGoToBuffer " .. i .. "<CR>", { desc = "Go to buffer " .. i })
 end
-vim.keymap.set("n", "<leader>td", function()
+vim.keymap.set("n", "<leader>sd", function()
 	vim.diagnostic.open_float({ scope = "line" })
 end, { desc = "Show diagnostic" })
+vim.keymap.set("n", "<leader>td", function()
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostic" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go to Definition" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP References" })
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP Implementation" })
@@ -61,6 +64,7 @@ vim.keymap.set("n", "<M-h>", "<cmd>vertical resize +5<CR>")
 vim.keymap.set("n", "<M-l>", "<cmd>vertical resize -5<CR>")
 vim.keymap.set("n", "<M-j>", "<cmd>resize +5<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>resize -5<CR>")
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- nvim-telescope/telescope.nvim
 vim.keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<CR>", { desc = "Telescope find files" })
@@ -78,3 +82,8 @@ vim.keymap.set("n", "<leader>ti", vim.cmd.InspectTree, { desc = "Inspect tree" }
 
 -- nvim-neo-tree/neo-tree
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Inspect tree" })
+
+-- kevinhwang91/nvim-ufo
+local ufo = require("ufo")
+vim.keymap.set("n", "zR", ufo.openAllFolds)
+vim.keymap.set("n", "zM", ufo.closeAllFolds)
